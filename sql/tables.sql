@@ -6,9 +6,9 @@ CREATE TABLE Categories (
 
 CREATE TABLE Ideas (
   idea_id SERIAL PRIMARY KEY,
-  category_id SERIAL,
   title VARCHAR(72),
   description TEXT,
+  category_id SERIAL,
   CONSTRAINT category_id
     FOREIGN KEY (category_id)
       REFERENCES Categories(category_id)

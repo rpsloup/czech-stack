@@ -1,12 +1,13 @@
 import { Router } from 'express';
 
 import { pool } from '../main';
+import { FETCH_IDEAS_WITH_CATEGORIES_QUERY } from '../queries/fetchQueries';
 
 const ideaRouter = Router();
 
 ideaRouter.get('/', async (_, res) => {
   try {
-    const ideas = await pool.query('SELECT * FROM Ideas');
+    const ideas = await pool.query(FETCH_IDEAS_WITH_CATEGORIES_QUERY);
     return res.json(ideas?.rows ?? []);
   } catch (error) {
     console.log(error);
