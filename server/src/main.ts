@@ -3,6 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { Pool } from 'pg';
 
+import ideaRouter from './routes/ideaRoutes';
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -21,8 +23,10 @@ export const pool = new Pool({
   port: Number(process.env.PORT) || DEFAULT_POSTGRES_PORT,
 });
 
-const port = process.env.PORT || DEFAULT_EXPRESS_PORT;
+// Routes
+app.use('/idea', ideaRouter);
 
+const port = process.env.PORT || DEFAULT_EXPRESS_PORT;
 app.listen(port, () => {
   console.log(`[STATUS] Listening on port ${port}...`);
 });
